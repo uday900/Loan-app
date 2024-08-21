@@ -3,10 +3,12 @@ import LandingPage from './pages/LandingPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import InterestCalculator from './pages/InterestCalculator'
 import LoanEmiCalculator from './pages/LoanEmiCalculator'
+import Navbar from './components/Navbar'
 function App() {
   return (
     <div>
       <BrowserRouter>
+      <Navbar/>
       <Routes>
         
 

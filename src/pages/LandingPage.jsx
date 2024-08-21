@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NormalCalculator from '../components/NormalCalculator';
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -20,9 +21,10 @@ const LandingPage = () => {
 
     return (
         <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6 col-sm-8">
-                    <h1 className="text-center mb-4"> Financial Calculator</h1>
+            <div className="row gap-5">
+                {/* Left Side: Search and List of Calculators */}
+                <div className="col-md-6 col-sm-12">
+                    <h1 className="text-center mb-4">Financial Calculator</h1>
 
                     {/* Search Bar */}
                     <div className="input-group mb-3">
@@ -53,6 +55,17 @@ const LandingPage = () => {
                             <li className="list-group-item">No results found</li>
                         )}
                     </ul>
+                </div>
+
+                {/* Right Side: Normal Calculator */}
+                <div className="col-md-4 col-sm-12">
+                    <div className="p-3">
+                        {/* <h2>Normal Calculator</h2> */}
+                        {/* You can place your calculator component or code here */}
+                        <p>
+                            <NormalCalculator/>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

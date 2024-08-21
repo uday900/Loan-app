@@ -1,0 +1,35 @@
+/* Basic styles for the calculator */
+.calculator {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 100%;
+}
+
+.calculator-screen {
+    margin-bottom: 10px;
+}
+
+.calculator-buttons .row {
+    margin-bottom: 5px;
+}
+
+.calculator-buttons button {
+    width: 100%;
+    margin: 2px 0;
+}
+
+.calculator-buttons .btn-light {
+    background-color: #f8f9fa;
+}
+
+.calculator-buttons .btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.calculator-buttons .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
