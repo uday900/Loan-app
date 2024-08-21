@@ -1,23 +1,23 @@
 /* Basic styles for the calculator */
 .calculator {
-    border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 100%;
+    padding: 15px; /* Added padding for better spacing */
 }
 
 .calculator-screen {
     margin-bottom: 10px;
 }
 
-.calculator-buttons .row {
-    margin-bottom: 5px;
-}
-
 .calculator-buttons button {
     width: 100%;
-    margin: 2px 0;
+    margin: 0; /* Remove default margin */
+    padding: 15px; /* Adjust padding for better appearance */
+    border: none; /* Remove button borders for a cleaner look */
+    font-size: 1.2rem; /* Increase font size for better readability */
+    border-radius: 4px; /* Add rounded corners */
 }
 
 .calculator-buttons .btn-light {
@@ -32,4 +32,14 @@
 .calculator-buttons .btn-danger {
     background-color: #dc3545;
     color: #fff;
+}
+
+/* Additional styles for button hover effects */
+.calculator-buttons button:hover {
+    opacity: 0.9; /* Slightly darken on hover */
+}
+
+.calculator-buttons button:active {
+    transform: scale(0.98); /* Slightly shrink on click for effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

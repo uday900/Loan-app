@@ -20,7 +20,7 @@ const LandingPage = () => {
     );
 
     return (
-        <div className="container mt-5">
+        <div className="container min-vh-100 align-items-center align-content-center">
             <div className="row gap-5">
                 {/* Left Side: Search and List of Calculators */}
                 <div className="col-md-6 col-sm-12">

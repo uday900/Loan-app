@@ -35,7 +35,7 @@ function InterestCalculator() {
     };
 
     return (
-        <div className="container mt-5 d-flex justify-content-center">
+        <div className="container min-vh-100  d-flex justify-content-center align-items-center">
             <div className="w-50">
                 <h2 className="text-center mb-4">Compound Interest Calculator</h2>
                 <div className="mb-3">

@@ -2,3 +2,18 @@
   margin: 0;
   padding: 0;
 }
+
+/* -----------------------Navbar------------------------ */
+
+.search-box{
+  border: 1px solid black;
+
+}
+.search-box input{
+
+  background: transparent;
+  outline: none;
+  border: none;
+  width: 500px;
+
+}
