@@ -1,14 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NormalCalculator from '../components/NormalCalculator';
+import Card from '../components/Card';
+import { context } from '../context/contextForSearch';
 
 const LandingPage = () => {
     const navigate = useNavigate();
-    const [searchTerm, setSearchTerm] = useState('');
-
+    const { searchTerm } = useContext(context)
+    // console.log(cals)
+    // const [searchTerm, setSearchTerm] = useState('');
+    // console.log(searchTerm)
+    // 
     const calculators = [
-        { name: 'Loan EMI Calculator', path: '/loanemicalculator' },
-        { name: 'Interest Calculator', path: '/interestcalculator' }
+            {
+                name: 'Loan EMI Calculator',
+                text: 'Easily calculate your loan EMIs and repayment schedule. Get a clear breakdown of your monthly payments and plan your finances better.',
+                path: '/loanemicalculator'
+            },
+            {
+                name: 'Home Loan Calculator',
+                text: 'Calculate your home loan EMIs and understand your repayment options. Plan your dream home purchase with confidence using our calculator.',
+                path: '/homeloancalculator'
+            },
+            {
+                name: 'Interest Calculator',
+                text: 'Determine the interest earned on your savings or investments. Calculate simple and compound interest over different periods and rates.',
+                path: '/interestcalculator'
+            }
+        
     ];
 
     const handleNavigation = (path) => {
@@ -18,56 +37,28 @@ const LandingPage = () => {
     const filteredCalculators = calculators.filter(calculator =>
         calculator.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
     return (
-        <div className="container min-vh-100 align-items-center align-content-center">
-            <div className="row gap-5">
-                {/* Left Side: Search and List of Calculators */}
-                <div className="col-md-6 col-sm-12">
-                    <h1 className="text-center mb-4">Financial Calculator</h1>
-
-                    {/* Search Bar */}
-                    <div className="input-group mb-3">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search for a calculator..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <button className="btn btn-primary">Search</button>
-                    </div>
-
-                    {/* List of Calculators */}
-                    <ul className="list-group">
-                        {filteredCalculators.length > 0 ? (
-                            filteredCalculators.map((calculator, index) => (
-                                <li
-                                    key={index}
-                                    className="list-group-item list-group-item-action"
-                                    onClick={() => handleNavigation(calculator.path)}
-                                    style={{ cursor: 'pointer' }}
-                                >
-                                    {calculator.name}
-                                </li>
-                            ))
-                        ) : (
-                            <li className="list-group-item">No results found</li>
-                        )}
-                    </ul>
-                </div>
-
-                {/* Right Side: Normal Calculator */}
-                <div className="col-md-4 col-sm-12">
-                    <div className="p-3">
-                        {/* <h2>Normal Calculator</h2> */}
-                        {/* You can place your calculator component or code here */}
-                        <p>
-                            <NormalCalculator/>
-                        </p>
-                    </div>
-                </div>
+        <div className="landing-page container ">
+            <div>
+                <h1 className='mb-4'>
+                    Financial Calculators
+                </h1>
             </div>
+            <div className='grid-container'>
+                {/* <Card bgColor="bg-light" title="Primary card title" text="Some quick example text to build on the card title and make up the bulk of the card's content." />
+                <Card bgColor="bg-light" title="Secondary card title" text="Some quick example text to build on the card title and make up the bulk of the card's content." />
+                <Card bgColor="bg-light" title="Success card title" text="Some quick example text to build on the card title and make up the bulk of the card's content." /> */}
+                {
+                    filteredCalculators.map((calculator, _) =>{
+                        return <Card key={_}  
+                        title={ calculator.name} 
+                        text={calculator.text} 
+                        path = {calculator.path}
+                    />
+                    })
+                }
+            </div>
+           
         </div>
     );
 };

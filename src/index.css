@@ -17,3 +17,26 @@
   width: 500px;
 
 }
+
+/* ---------------------------Landing page=--------- */
+
+/* Landing Page */
+.landing-page {
+  margin-top: 8%;
+}
+
+.grid-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2%;
+  justify-content: center;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+  .landing-page {
+    margin-top: 20%; /* Adjust this value as needed */
+  }
+}
+

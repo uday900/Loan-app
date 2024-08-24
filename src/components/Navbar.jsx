@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { context } from '../context/contextForSearch';
 
 function Navbar() {
-    const [searchTerm, setSearchTerm] = useState('');
+  const { searchTerm, setSearchTerm } = useContext(context)
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -11,7 +12,7 @@ function Navbar() {
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         // Handle search logic here
-        console.log('Search:', searchTerm);
+        // console.log('Search:', searchTerm);
     };
 
     return <>
@@ -40,12 +41,15 @@ function Navbar() {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto align-items-center">
         <li className="nav-item d-flex align-items-center">
-            <form className='search-box border p-1 px-3'>
+
+            <form className='search-box border p-1 px-3'
+            onSubmit={handleSearchSubmit}>
                 <i className="fa fa-search"></i>
 
                 <input type="text" 
                     placeholder='what are you looking at...'
-                    className=' p-2 mx-2'    
+                    className=' p-2 mx-2'
+                    onChange={handleSearchChange}
                 />
             </form>
         </li>
