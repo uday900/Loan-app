@@ -46,13 +46,16 @@ const InterestGenerateCalculator = () => {
                 month: month,
                 initialAmount: currentAmount.toFixed(2),
                 interest: interest.toFixed(2),
-                total: totalInterestGenerated.toFixed(2),
+                total: (interest + currentAmount ).toFixed(2),
             });
             currentAmount += interest;
         }
 
         setRate(monthlyRatePercentage.toFixed(2));
+
         setTotalInterest(totalInterestGenerated.toFixed(2));
+        // setTotalInterest( ( totalAmount - principal ) * 100 /principal ) 
+        console.log(totalInterest)
         setMonthlySummary(summary);
     };
 
@@ -61,7 +64,7 @@ const InterestGenerateCalculator = () => {
             <h3 className="text-center mb-4">Interest Generator Calculator</h3>
 
             <div className="row justify-content-center">
-                <div className="col-md-7 p-5 shadow mb-5">
+                <div className="col-md-7 mb-5">
                     <div>
                         <div className="mb-3">
                             <label className="form-label">Principal (₹):</label>
@@ -113,7 +116,7 @@ const InterestGenerateCalculator = () => {
             </div>
 
             {monthlySummary.length > 0 && (
-                <div>
+                <div className='mb-5'>
                     <div className="mb-4">
                         <strong className='h5'>Total Interest Generated: </strong>
                         <span className="text-success">
@@ -121,12 +124,11 @@ const InterestGenerateCalculator = () => {
                         </span>
                     </div>
                     <div className="mb-4">
-                        <strong className='h5'>Annualized Interest Rate: </strong>
+                        <strong className='h5'>Total Interest Rate: </strong>
                         <span className="text-success">
-                         {(rate * 12).toFixed(2)}%
+                         {/* {(rate *12 ).toFixed(2)}% */}
+                         { totalInterest * 100  / principal}%
                         </span>
-
-                         
                     </div>
                     <div className="mb-4">
                     <strong className='h5'>Monthly Interest Rate: </strong>

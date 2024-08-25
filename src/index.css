@@ -4,23 +4,59 @@
 }
 
 /* -----------------------Navbar------------------------ */
-
-.search-box{
-  border: 1px solid black;
-
+/* Navbar Logo */
+.logo {
+  object-fit: contain;
+  width: 50px; /* Adjust width as needed */
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
 }
-.search-box input{
 
+/* Search Box Styles */
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(208, 207, 207);
+  border-radius: 20px; /* Rounded corners */
+  padding: 5px 10px; /* Padding around the search input */
+  background-color: #f8f9fa; /* Light background color */
+}
+
+.search-box input {
   background: transparent;
   outline: none;
   border: none;
-  width: 500px;
-
+  width: 300px; /* Adjust width as needed */
+  padding: 5px;
 }
+
+/* Navbar Styles */
+.navbar {
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.nav-item {
+  margin-left: 10px;
+}
+
+.btn-black {
+  background-color: #333;
+  color: #fff;
+  border-radius: 20px; /* Rounded corners */
+}
+
+.btn-rounded {
+  border-radius: 20px;
+}
+
 
 /* ---------------------------Landing page=--------- */
 
-/* Landing Page */
 .landing-page {
   margin-top: 8%;
 }
@@ -36,7 +72,6 @@
 /* Media Query for Mobile Devices */
 @media (max-width: 480px) {
   .landing-page {
-    margin-top: 20%; /* Adjust this value as needed */
+    margin-top: 28%; /* Adjust this value as needed */
   }
 }
-

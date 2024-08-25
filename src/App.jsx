@@ -1,6 +1,6 @@
 import React from 'react'
 import LandingPage from './pages/LandingPage'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import InterestCalculator from './pages/InterestCalculator'
 import LoanEmiCalculator from './pages/LoanEmiCalculator'
 import Navbar from './components/Navbar'

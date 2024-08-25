@@ -6,7 +6,9 @@ const Card = ({ bgColor = 'bg-light', title, text, path }) => (
   <Link to = {path}
   style={{ textDecoration : "none"}} >
     <div className={`card text-dark bg-light mb-3`}
+    style={{ height : "250px"}}
 //    style={{ maxWidth: '18rem' }}
+
     >
     <div className="card-header">{title}</div>
     <div className="card-body">

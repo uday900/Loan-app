@@ -12,28 +12,28 @@ const LandingPage = () => {
     // console.log(searchTerm)
     // 
     const calculators = [
-            {
-                name: 'Loan EMI Calculator',
-                text: 'Easily calculate your loan EMIs and repayment schedule. Get a clear breakdown of your monthly payments and plan your finances better.',
-                path: '/loanemicalculator'
-            },
-            {
-                name: 'Home Loan Calculator',
-                text: 'Calculate your home loan EMIs and understand your repayment options. Plan your dream home purchase with confidence using our calculator.',
-                path: '/homeloancalculator'
-            },
-            {
-                name: 'Interest Calculator',
-                text: 'Determine the interest earned on your savings or investments. Calculate simple and compound interest over different periods and rates.',
-                path: '/interestcalculator'
-            },
-            {
-                name: 'Interest Generate Calculator',
-                text: 'Determine the interest earned on your savings or investments. Calculate simple and compound interest over different periods and rates.',
-                path: '/interestgeneratecalculator'
-            }
-        
+        {
+            name: 'Loan EMI Calculator',
+            text: 'Calculate your loan EMIs and view your repayment schedule. Plan your budget with ease.',
+            path: '/loanemicalculator'
+        },
+        {
+            name: 'Home Loan Calculator',
+            text: 'Estimate your home loan EMIs and repayment options. Get ready for your home purchase.',
+            path: '/homeloancalculator'
+        },
+        {
+            name: 'Interest Calculator',
+            text: 'Compute interest on savings or investments. Includes both simple and compound interest calculations.',
+            path: '/interestcalculator'
+        },
+        {
+            name: 'Interest Generate Calculator',
+            text: 'Calculate generated interest on your savings or investments. Includes simple and compound options.',
+            path: '/interestgeneratecalculator'
+        }
     ];
+    
 
     const handleNavigation = (path) => {
         navigate(path);
@@ -45,14 +45,11 @@ const LandingPage = () => {
     return (
         <div className="landing-page container ">
             <div>
-                <h1 className='mb-4'>
+                <h2 className='mb-4'>
                     Financial Calculators
-                </h1>
+                </h2>
             </div>
             <div className='grid-container'>
-                {/* <Card bgColor="bg-light" title="Primary card title" text="Some quick example text to build on the card title and make up the bulk of the card's content." />
-                <Card bgColor="bg-light" title="Secondary card title" text="Some quick example text to build on the card title and make up the bulk of the card's content." />
-                <Card bgColor="bg-light" title="Success card title" text="Some quick example text to build on the card title and make up the bulk of the card's content." /> */}
                 {
                     filteredCalculators.map((calculator, _) =>{
                         return <Card key={_}  
