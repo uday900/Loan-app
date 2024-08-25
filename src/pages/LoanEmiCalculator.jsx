@@ -8,6 +8,10 @@ function LoanEmiCalculator() {
     const [timeUnit, setTimeUnit] = useState('months'); // Default to months
     const [startDate, setStartDate] = useState('');
     const [results, setResults] = useState(null);
+    const [variables, setVariables ] = useState({
+        isActiveCustomFields : false,
+
+    })
 
     const calculateEMI = () => {
         const p = parseFloat(principal);
@@ -84,85 +88,143 @@ function LoanEmiCalculator() {
         printWindow.print();
     };
 
-    return (
-        <div className="container pt-5 mt-5">
-            <div>
-            <h2 className="text-center">Loan EMI Calculator</h2>
-            <div className="row justify-content-center">
-                <div className="col-md-6">
-                    <div className="form-group">
-                        <label>Loan Amount</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            value={principal}
-                            onChange={(e) => setPrincipal(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Annual Interest Rate (%)</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            value={annualRate}
-                            onChange={(e) => setAnnualRate(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Time Period</label>
-                        <div className="d-flex">
-                            <input
-                                type="number"
-                                className="form-control me-2"
-                                placeholder="Enter value"
-                                value={timeValue}
-                                onChange={(e) => setTimeValue(e.target.value)}
-                            />
-                            <select
-                                className="form-select"
-                                value={timeUnit}
-                                onChange={(e) => setTimeUnit(e.target.value)}
-                            >
-                                <option value="months">Months</option>
-                                <option value="years">Years</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label>Start Date</label>
-                        <input
-                            type="date"
-                            className="form-control"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                        />
-                    </div>
-                    <button className="btn btn-primary mt-3" onClick={calculateEMI}>
-                        Calculate EMI
-                    </button>
-                    {results && (
-                        <>
-                            <button className="btn btn-secondary mt-3" onClick={printSummary}>
-                                Print Summary
-                            </button>
-                            <div className="mt-4">
-                                <EMIResultTable data={results.data} />
-                                <div className="alert alert-info mt-4">
-                                    <strong>Summary:</strong> <br />
-                                    Loan Amount: ₹{principal} <br />
-                                    Total Interest Paid: ₹{results.totalInterestPaid.toFixed(2)} <br />
-                                    Total Amount Paid: ₹{(results.totalPrincipalPaid + results.totalInterestPaid).toFixed(2)} <br />
-                                    End Date: {results.endDate} <br />
-                                    Over a Period of {timeValue} {timeUnit}
-                                </div>
-                            </div>
-                        </>
-                    )}
+    return <>
+{ !variables.isActiveCustomFields ? (
+    <div className="container pt-5 mt-5">
+    <div>
+    <h2 className="text-center">Loan EMI Calculator</h2>
+    <div className="row justify-content-center">
+        <div className="col-md-6">
+            <div className="form-group">
+                <label>Loan Amount</label>
+                <input
+                    type="number"
+                    className="form-control"
+                    value={principal}
+                    onChange={(e) => setPrincipal(e.target.value)}
+                />
+            </div>
+            <div className="form-group">
+                <label>Annual Interest Rate (%)</label>
+                <input
+                    type="number"
+                    className="form-control"
+                    value={annualRate}
+                    onChange={(e) => setAnnualRate(e.target.value)}
+                />
+            </div>
+            <div className="form-group">
+                <label>Time Period</label>
+                <div className="d-flex">
+                    <input
+                        type="number"
+                        className="form-control me-2"
+                        placeholder="Enter value"
+                        value={timeValue}
+                        onChange={(e) => setTimeValue(e.target.value)}
+                    />
+                    <select
+                        className="form-select"
+                        value={timeUnit}
+                        onChange={(e) => setTimeUnit(e.target.value)}
+                    >
+                        <option value="months">Months</option>
+                        <option value="years">Years</option>
+                    </select>
                 </div>
             </div>
+            <div className="form-group">
+                <label>Start Date</label>
+                <input
+                    type="date"
+                    className="form-control"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                />
+            </div>
+           <div className="my-4">
+           <button className="btn btn-primary me-2" onClick={calculateEMI}>
+                Calculate EMI
+            </button>
+            <button className="btn btn-secondary"
+            onClick={()=> {
+                setVariables({
+                    ...variables,
+                    isActiveCustomFields : true
+                })
+            }}>
+                Custome fields
+            </button>
+           </div>
+            {results && (
+                <>
+                    <button className="btn btn-secondary mt-3" onClick={printSummary}>
+                        Print Summary
+                    </button>
+                    <div className="mt-4">
+                        <EMIResultTable data={results.data} />
+                        <div className="alert alert-info mt-4">
+                            <strong>Summary:</strong> <br />
+                            Loan Amount: ₹{principal} <br />
+                            Total Interest Paid: ₹{results.totalInterestPaid.toFixed(2)} <br />
+                            Total Amount Paid: ₹{(results.totalPrincipalPaid + results.totalInterestPaid).toFixed(2)} <br />
+                            End Date: {results.endDate} <br />
+                            Over a Period of {timeValue} {timeUnit}
+                        </div>
+                    </div>
+                </>
+            )}
+        </div>
+    </div>
+    </div>
+</div>
+) : (
+    <>
+    <div className="container pt-5 mt-5">
+        <div>
+        <h2 className="text-center">Loan EMI Calculator</h2>
+        <div className="row justify-content-center">
+            <div className="col-md-6">
+                <form >
+                    <div className="form-group">
+                        <label>What do you want to find out </label>
+                        <select
+                            className="form-select mt-2"
+                            // value={timeUnit}
+                            // onChange={(e) => setTimeUnit(e.target.value)}
+                        >
+                            <option value="principle/loan amount">Principle/loanamount</option>
+                            <option value="rateofinterest">rate of interest</option>
+                            <option value="timeperiod">Time Period</option>
+                            <option value="emi">Emi</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group mt-3">
+                        <div className="row">
+                            <label htmlFor="" className="col-form-label">Emi</label>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-5">
+                                <select name="" id="" className="form-select">
+                                    <option value="auto">Auto</option>
+                                    <option value="manual">Manual</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
             </div>
         </div>
-    );
+        </div>
+    </div>
+
+    </>
+)}
+    
+    
+    </>
 }
 
 export default LoanEmiCalculator;
