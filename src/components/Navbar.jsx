@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { context } from '../context/contextForSearch';
+import logo from '../assets/file.png'
 
 function Navbar() {
   const { searchTerm, setSearchTerm } = useContext(context)
@@ -18,11 +19,12 @@ function Navbar() {
     return <>
  <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="#"
+    <a class="navbar-brand" href="/"
       ><img
-        id="MDB-logo"
-        src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
-        alt="MDB Logo"
+        id="logo"
+        // src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
+        src= ''
+        alt="Logo"
         draggable="false"
         height="30"
     /></a>

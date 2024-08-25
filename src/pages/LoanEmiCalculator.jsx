@@ -4,12 +4,16 @@ import EMIResultTable from '../components/EMIResultTable';
 function LoanEmiCalculator() {
     const [principal, setPrincipal] = useState('');
     const [annualRate, setAnnualRate] = useState('');
+    const [EMI, setEMI ] = useState('');
     const [timeValue, setTimeValue] = useState('');
     const [timeUnit, setTimeUnit] = useState('months'); // Default to months
     const [startDate, setStartDate] = useState('');
     const [results, setResults] = useState(null);
+
     const [variables, setVariables ] = useState({
         isActiveCustomFields : false,
+        choosedField : '',
+        emiType : '',
 
     })
 
@@ -88,8 +92,12 @@ function LoanEmiCalculator() {
         printWindow.print();
     };
 
+    const handleCustomFormSubmit = (event) => { 
+        event.preventDefault();
+     }
+
     return <>
-{ !variables.isActiveCustomFields ? (
+{/* { !variables.isActiveCustomFields ? ( */}
     <div className="container pt-5 mt-5">
     <div>
     <h2 className="text-center">Loan EMI Calculator</h2>
@@ -146,7 +154,7 @@ function LoanEmiCalculator() {
            <button className="btn btn-primary me-2" onClick={calculateEMI}>
                 Calculate EMI
             </button>
-            <button className="btn btn-secondary"
+            {/* <button className="btn btn-secondary"
             onClick={()=> {
                 setVariables({
                     ...variables,
@@ -154,7 +162,7 @@ function LoanEmiCalculator() {
                 })
             }}>
                 Custome fields
-            </button>
+            </button> */}
            </div>
             {results && (
                 <>
@@ -178,50 +186,7 @@ function LoanEmiCalculator() {
     </div>
     </div>
 </div>
-) : (
-    <>
-    <div className="container pt-5 mt-5">
-        <div>
-        <h2 className="text-center">Loan EMI Calculator</h2>
-        <div className="row justify-content-center">
-            <div className="col-md-6">
-                <form >
-                    <div className="form-group">
-                        <label>What do you want to find out </label>
-                        <select
-                            className="form-select mt-2"
-                            // value={timeUnit}
-                            // onChange={(e) => setTimeUnit(e.target.value)}
-                        >
-                            <option value="principle/loan amount">Principle/loanamount</option>
-                            <option value="rateofinterest">rate of interest</option>
-                            <option value="timeperiod">Time Period</option>
-                            <option value="emi">Emi</option>
-                        </select>
-                    </div>
 
-                    <div className="form-group mt-3">
-                        <div className="row">
-                            <label htmlFor="" className="col-form-label">Emi</label>
-                        </div>
-                        <div className="row">
-                            <div className="col-sm-5">
-                                <select name="" id="" className="form-select">
-                                    <option value="auto">Auto</option>
-                                    <option value="manual">Manual</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    </>
-)}
     
     
     </>

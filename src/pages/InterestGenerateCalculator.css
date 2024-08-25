@@ -1,0 +1,18 @@
+
+
+.table-responsive {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+.table {
+    font-size: 0.875rem; /* Smaller font size */
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+span{
+    font-size: 1.3rem;
+}

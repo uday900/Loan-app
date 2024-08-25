@@ -26,6 +26,11 @@ const LandingPage = () => {
                 name: 'Interest Calculator',
                 text: 'Determine the interest earned on your savings or investments. Calculate simple and compound interest over different periods and rates.',
                 path: '/interestcalculator'
+            },
+            {
+                name: 'Interest Generate Calculator',
+                text: 'Determine the interest earned on your savings or investments. Calculate simple and compound interest over different periods and rates.',
+                path: '/interestgeneratecalculator'
             }
         
     ];
