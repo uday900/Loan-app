@@ -69,9 +69,16 @@
   justify-content: center;
 }
 
+/* ------------------Card----------------- */
+.card:hover{
+  background-color:#eee;
+  /* background: #eee; */
+}
+
 /* Media Query for Mobile Devices */
 @media (max-width: 480px) {
   .landing-page {
     margin-top: 28%; /* Adjust this value as needed */
   }
 }
+
