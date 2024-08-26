@@ -17,11 +17,11 @@ const LandingPage = () => {
             text: 'Calculate your loan EMIs and view your repayment schedule. Plan your budget with ease.',
             path: '/loanemicalculator'
         },
-        {
-            name: 'Home Loan Calculator',
-            text: 'Estimate your home loan EMIs and repayment options. Get ready for your home purchase.',
-            path: '/homeloancalculator'
-        },
+        // {
+        //     name: 'Home Loan Calculator',
+        //     text: 'Estimate your home loan EMIs and repayment options. Get ready for your home purchase.',
+        //     path: '/homeloancalculator'
+        // },
         {
             name: 'Interest Calculator',
             text: 'Compute interest on savings or investments. Includes both simple and compound interest calculations.',

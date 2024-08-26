@@ -79,8 +79,10 @@
 import React, { useContext } from 'react';
 import { context } from '../context/contextForSearch';
 import logo from '../assets/logo-png.png';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
+  const navigate = useNavigate();
   const { searchTerm, setSearchTerm } = useContext(context);
 
   const handleSearchChange = (e) => {
@@ -89,6 +91,7 @@ function Navbar() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    navigate('/')
     // Handle search logic here
     // console.log('Search:', searchTerm);
   };
