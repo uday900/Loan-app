@@ -5,6 +5,7 @@ import LoanEmiCalculator from './pages/LoanEmiCalculator'
 import Navbar from './components/Navbar'
 import InterestGenerateCalculator from './pages/InterestGenerateCalculator'
 import CompoundInterestCalculator from './pages/CompoundInterestCalculator'
+import DiscountCalculator from './pages/DiscountCalculator'
 function App() {
   return <>
     <Navbar/>
@@ -15,6 +16,8 @@ function App() {
         <Route path = '/loanemicalculator' element = { <LoanEmiCalculator/> } />
         <Route path = '/compoundinterestcalculator' element = { <CompoundInterestCalculator/> } />
         <Route path='/interestgeneratecalculator' element = { <InterestGenerateCalculator/>} />
+        <Route path='/discountcalculator' element = { <DiscountCalculator/>} />
+
 
         <Route path = '*' element = { <>Page not found</> } />
 

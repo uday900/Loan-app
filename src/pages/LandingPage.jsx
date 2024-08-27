@@ -5,12 +5,7 @@ import { context } from '../context/contextForSearch';
 import { calculators } from '../calculators';
 
 const LandingPage = () => {
-    const navigate = useNavigate();
     const { searchTerm } = useContext(context)
-
-    const handleNavigation = (path) => {
-        navigate(path);
-    };
 
     const filteredCalculators = calculators.filter(calculator =>
         calculator.name.toLowerCase().includes(searchTerm.toLowerCase())

@@ -41,14 +41,19 @@ const InterestGenerateCalculator = () => {
 
             // console.log("monthly rate ", rate)
             rate = rate / 12;
-            const monthsList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const monthsList = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             let monthIndex = date.getMonth();
+
+            let day = date.getDate(); // Use the start date's day
+
             for (let i = 1; i <= T ; i++) {  
                 const interestAmount = (rate / 100) * currentAmount;
                 const totalAmount = interestAmount + currentAmount;
+                const formattedDate = `${day}-${monthsList[monthIndex]}-${date.getFullYear()}`;
+
                 table.push({
                     sno : i,
-                    period: monthsList[monthIndex],
+                    period: formattedDate,
                     initialAmount: currentAmount.toFixed(2),
                     interest: interestAmount.toFixed(2),
                     total: totalAmount.toFixed(2),

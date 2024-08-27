@@ -14,5 +14,11 @@ export const calculators = [
         name: 'Rate of Interest Generate Calculator',
         text: 'Calculate generated interest on your savings or investments. Includes simple and compound options.',
         path: '/interestgeneratecalculator'
-    }
+    },
+    {
+        name: 'Discount Calculator',
+        text: 'Calculate discounts and see the amount saved on your purchases. Easy and quick calculations.',
+        path: '/discountcalculator'
+    },
+    
 ];

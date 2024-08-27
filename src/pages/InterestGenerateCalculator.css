@@ -1,12 +1,12 @@
-
+/* 
 
 .table-responsive {
-    max-height: 400px; /* Adjust the height as needed */
+    max-height: 400px;
     overflow-y: auto;
 }
 
 .table {
-    font-size: 0.875rem; /* Smaller font size */
+    font-size: 0.875rem; 
 }
 
 .table-bordered th,
@@ -15,4 +15,49 @@
 }
 span{
     font-size: 1.3rem;
+} */
+
+
+
+
+.input-box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-box .form-label {
+    font-weight: bold;
+}
+
+.input-box input,
+.input-box select,
+.input-box button {
+    width: 100%;
+}
+
+.table-responsive {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    text-align: center;
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.table td {
+    background-color: #fff;
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #ddd;
 }
