@@ -18,12 +18,10 @@ const InterestGenerateCalculator = () => {
       });
     
     const calculateInterest = () => {
-        console.log("timeunit in calculation", timeUnit)
-
         const P = parseFloat(principal);
         const A = parseFloat(totalAmount);
-        // let T = parseFloat(timePeriod.years);
-        let T = parseFloat(timePeriod.years) + (parseFloat(timePeriod.months) / 12);
+        let T = parseFloat(timePeriod.years);
+        // let T = parseFloat(timePeriod.years) + (parseFloat(timePeriod.months) / 12);
 
 
         if (isNaN(P) || isNaN(A) || isNaN(T) || P <= 0 || A <= 0 || T <= 0) {
@@ -34,7 +32,7 @@ const InterestGenerateCalculator = () => {
         let rate = 100 * (Math.pow(A / P, 1 / T) - 1);
         let table = [];
         let currentAmount = P;
-        let d = new Date(startDate);
+        let date = new Date(startDate);
         
         // monthly Compounding
         if (timeUnit === 'months') {
@@ -44,36 +42,36 @@ const InterestGenerateCalculator = () => {
             // console.log("monthly rate ", rate)
             rate = rate / 12;
             const monthsList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            d = d.getMonth();
+            let monthIndex = date.getMonth();
             for (let i = 1; i <= T ; i++) {  
                 const interestAmount = (rate / 100) * currentAmount;
                 const totalAmount = interestAmount + currentAmount;
                 table.push({
                     sno : i,
-                    period: monthsList[d],
+                    period: monthsList[monthIndex],
                     initialAmount: currentAmount.toFixed(2),
                     interest: interestAmount.toFixed(2),
                     total: totalAmount.toFixed(2),
                 });
     
-                d += 1
-                if ( d >= 12 ) d = 0
+                monthIndex = (monthIndex + 1 ) % 12;
+
                 currentAmount = totalAmount;
             }
         } else{
-            d = d.getFullYear()
+            let year = date.getFullYear()
             for (let i = 1; i <= T ; i++) {  
                 const interestAmount = (rate / 100) * currentAmount;
                 const totalAmount = interestAmount + currentAmount;
                 table.push({
                     sno : i,
-                    period: d,
+                    period: year,
                     initialAmount: currentAmount.toFixed(2),
                     interest: interestAmount.toFixed(2),
                     total: totalAmount.toFixed(2),
                 });
 
-                d += 1
+                year += 1
                 currentAmount = totalAmount;
             }
         }
@@ -83,14 +81,21 @@ const InterestGenerateCalculator = () => {
         setInterest({
             totalRateOfInterest: rate.toFixed(2),
         });
-        console.log("called this")
     };
     
      const handleTimeUnitChange = (event) => {
         const newTimeUnit = event.target.value;
         setTimeUnit(newTimeUnit);
-        calculateInterest(); // Trigger calculation when time unit changes
+        // console.log(newTimeUnit, timeUnit,'.......')
+        // calculateInterest(); // Trigger calculation when time unit changes
     }
+    useEffect(() => {
+        // Trigger calculation when time unit, principal, totalAmount, or timePeriod changes
+        if (principal && totalAmount && (timePeriod.years || timePeriod.months)) {
+            calculateInterest();
+        }
+    }, [timeUnit, principal, totalAmount, timePeriod]);
+
     
     
 
@@ -137,7 +142,7 @@ const InterestGenerateCalculator = () => {
                                     id = "years" />
                                     <label htmlFor="years"> Years</label>
                                 </div>
-                                <div className="col-sm-3">
+                                {/* <div className="col-sm-3">
                                     <input type="number"
                                     className='form-control'
                                     id = "months" 
@@ -148,7 +153,7 @@ const InterestGenerateCalculator = () => {
                                         months : e.target.value
                                     })}/>
                                     <label htmlFor="months"> Months</label>
-                                </div>
+                                </div> */}
         
                             </div>
                         </div>
