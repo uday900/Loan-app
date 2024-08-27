@@ -92,12 +92,10 @@ function Navbar() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     navigate('/')
-    // Handle search logic here
-    // console.log('Search:', searchTerm);
   };
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <nav className="navbar shadow-sm navbar-expand-lg fixed-top navbar-light bg-light">
       <div className="container">
         <a href="/" className="navbar-brand">
           <img
