@@ -1,15 +1,14 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './InterestGenerateCalculator.css';
 
 const InterestGenerateCalculator = () => {
     const [principal, setPrincipal] = useState('');
     const [totalAmount, setTotalAmount] = useState('');
-    const [timeValue, setTimeValue] = useState(0);
-    const [timeUnit, setTimeUnit] = useState('months');
+    const [timeUnit, setTimeUnit] = useState('years');
     const [ timePeriod, setTimePeriod] = useState({
-        years : 0, 
-        months : 0,
+        years : '', 
+        months : '',
     })
     const [summary, setSummary] = useState([]);
     const [interest, setInterest] = useState(null);
@@ -17,52 +16,83 @@ const InterestGenerateCalculator = () => {
         const today = new Date();
         return today.toISOString().split('T')[0]; // Format to YYYY-MM-DD
       });
-
+    
     const calculateInterest = () => {
+        console.log("timeunit in calculation", timeUnit)
+
         const P = parseFloat(principal);
         const A = parseFloat(totalAmount);
-        const T = parseFloat(timeValue);
+        // let T = parseFloat(timePeriod.years);
+        let T = parseFloat(timePeriod.years) + (parseFloat(timePeriod.months) / 12);
+
 
         if (isNaN(P) || isNaN(A) || isNaN(T) || P <= 0 || A <= 0 || T <= 0) {
             alert("Please enter valid numbers greater than zero");
             return;
         }
 
-        let rate;
+        let rate = 100 * (Math.pow(A / P, 1 / T) - 1);
         let table = [];
-        if (timeUnit === 'years') {
-            // Yearly Compounding
-            rate = 100 * (Math.pow(A / P, 1 / T) - 1);
-        } else {
-            // Monthly Compounding
-            rate =  12 * 100 * (Math.pow(A / P, 1 / ( T * 12 )) - 1);
-            console.log(rate.toFixed(2), 'monthly rate')
-            
-        }
-
         let currentAmount = P;
-        // const rateOfInterest = timeUnit === 'years' ? rate : rate / 12;
-        const rateOfInterest = rate;
-        const isMonthly = timeUnit === 'months';
+        let d = new Date(startDate);
+        
+        // monthly Compounding
+        if (timeUnit === 'months') {
+            T = T * 12;
+            rate =  12 * 100 * (Math.pow(A / P, 1 / ( T )) - 1);
 
-        for (let i = 1; i <= T; i++) {
-            const interestAmount = (rateOfInterest / 100) * currentAmount;
-            const totalAmount = interestAmount + currentAmount;
-            table.push({
-                index: i,
-                initialAmount: currentAmount.toFixed(2),
-                interest: interestAmount.toFixed(2),
-                total: totalAmount.toFixed(2),
-            });
+            // console.log("monthly rate ", rate)
+            rate = rate / 12;
+            const monthsList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            d = d.getMonth();
+            for (let i = 1; i <= T ; i++) {  
+                const interestAmount = (rate / 100) * currentAmount;
+                const totalAmount = interestAmount + currentAmount;
+                table.push({
+                    sno : i,
+                    period: monthsList[d],
+                    initialAmount: currentAmount.toFixed(2),
+                    interest: interestAmount.toFixed(2),
+                    total: totalAmount.toFixed(2),
+                });
+    
+                d += 1
+                if ( d >= 12 ) d = 0
+                currentAmount = totalAmount;
+            }
+        } else{
+            d = d.getFullYear()
+            for (let i = 1; i <= T ; i++) {  
+                const interestAmount = (rate / 100) * currentAmount;
+                const totalAmount = interestAmount + currentAmount;
+                table.push({
+                    sno : i,
+                    period: d,
+                    initialAmount: currentAmount.toFixed(2),
+                    interest: interestAmount.toFixed(2),
+                    total: totalAmount.toFixed(2),
+                });
 
-            currentAmount = totalAmount;
+                d += 1
+                currentAmount = totalAmount;
+            }
         }
+        
 
         setSummary(table);
         setInterest({
             totalRateOfInterest: rate.toFixed(2),
         });
+        console.log("called this")
     };
+    
+     const handleTimeUnitChange = (event) => {
+        const newTimeUnit = event.target.value;
+        setTimeUnit(newTimeUnit);
+        calculateInterest(); // Trigger calculation when time unit changes
+    }
+    
+    
 
     return (
         <div className="container mt-5 pt-5">
@@ -91,35 +121,15 @@ const InterestGenerateCalculator = () => {
                             />
                         </div>
 
-                        <div className="mb-3">
-                            <label className="form-label">Time Value:</label>
-                            <input
-                                type="number"
-                                className="form-control input-box-shadow"
-                                value={timeValue}
-                                onChange={(e) => setTimeValue(e.target.value)}
-                            />
-                        </div>
 
                         <div className="mb-3">
-                            <label className="form-label">Time Unit:</label>
-                            <select
-                                className="form-select"
-                                value={timeUnit}
-                                onChange={(e) => setTimeUnit(e.target.value)}
-                            >
-                                <option value="months">Months</option>
-                                <option value="years">Years</option>
-                            </select>
-                        </div>
-
-                        <div className="mb-3">
-                            <label htmlFor=""> Time Period: </label>
+                            <label className = 'form-label' htmlFor=""> Time Period: </label>
                             <div className="row">
                                 <div className="col-sm-3">
                                     <input type="number"
                                     className='form-control' 
                                     value={ timePeriod.years}
+                                    placeholder='0'
                                     onChange={(e)=> setTimePeriod({
                                         ...timePeriod,
                                         years : e.target.value,
@@ -131,6 +141,7 @@ const InterestGenerateCalculator = () => {
                                     <input type="number"
                                     className='form-control'
                                     id = "months" 
+                                    placeholder='0'
                                     value={ timePeriod.months } 
                                     onChange={(e)=> setTimePeriod({
                                         ...timePeriod,
@@ -162,6 +173,8 @@ const InterestGenerateCalculator = () => {
             {summary.length > 0 && (
                 <div className='mb-5'>
                     <div className="mb-4">
+                        <div className=" d-flex ">
+                        
                         <strong className='h5'>
                             {/* Total Interest Rate:  */}
                             {timeUnit === 'years' ? ' Annual' : ' Monthly'} Rate: 
@@ -169,22 +182,42 @@ const InterestGenerateCalculator = () => {
                         <span className="text-success">
                             &nbsp; {interest.totalRateOfInterest}%
                         </span>
+
+                        <div className="mx-5">
+                            {/* <label className="form-label">Time Unit:</label> */}
+                            <select
+                                className="form-select"
+                                value={timeUnit}
+                                onChange={(e) => {
+                                    handleTimeUnitChange(e);
+                                }}>
+
+                                <option value="months">Months</option>
+                                <option value="years">Years</option>
+                            </select>
+                        </div>
+
+                        </div>
+                        
                     </div>
 
+                    {/* display summary in table form */}
                     <div className="table-responsive">
                         <table className="table table-striped table-sm table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Year</th>
+                                    <th>S.No</th>
+                                    <th>{ timeUnit== 'years' ? 'Years' : 'Months' }</th>
                                     <th>Initial Amount</th>
                                     <th>Interest</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {summary.map((item, index) => (
-                                    <tr key={index}>
-                                        <td>{item.index}</td>
+                                {summary.map((item, i) => (
+                                    <tr key={i}>
+                                        <td> { item.sno} </td>
+                                        <td>{item.period}</td>
                                         <td>₹{item.initialAmount}</td>
                                         <td>₹{item.interest}</td>
                                         <td>₹{item.total}</td>
