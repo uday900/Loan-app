@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CompoundInterestInfo from '../components/CalculatorsInfo/CompoundInterestInfo';
 
 function CompoundInterestCalculator() {
     const [principal, setPrincipal] = useState('');
@@ -53,8 +54,8 @@ function CompoundInterestCalculator() {
         });
     };
 
-    return (
-        <div className="container mt-5 pt-5 align-items-center">
+    return <>
+     <div className="container mt-5 pt-5 align-items-center">
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <h2 className="text-center mb-4">Compound Interest Calculator</h2>
@@ -130,7 +131,11 @@ function CompoundInterestCalculator() {
                 </div>
             </div>
         </div>
-    );
+        
+        
+        <CompoundInterestInfo/>
+        
+        </>
 }
 
 export default CompoundInterestCalculator;

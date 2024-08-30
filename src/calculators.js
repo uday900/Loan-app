@@ -20,5 +20,11 @@ export const calculators = [
         text: 'Calculate discounts and see the amount saved on your purchases. Easy and quick calculations.',
         path: '/discountcalculator'
     },
+    {
+        name: 'SIP Calculator',
+        text: 'Calculate the future value of your systematic investment plans (SIPs) based on monthly investments, interest rates, and investment duration.',
+        path: '/sipcalculator'
+    }
+    
     
 ];

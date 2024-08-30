@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DiscountCalculatorInfo from '../components/CalculatorsInfo/DiscountCalInfo';
 // import './DiscountCalculator.css'; // Make sure to include Bootstrap CSS
 
 const DiscountCalculator = () => {
@@ -62,8 +63,9 @@ const DiscountCalculator = () => {
         setDiscountPercentage('');
         setFinalPrice('');
     };
-    return (
-        <div className="container mt-5 pt-5">
+    return <>
+    
+    <div className="container mt-5 pt-5">
             <h3 className="text-center mb-4">Discount Calculator</h3>
 
             <div className="row">
@@ -138,7 +140,9 @@ const DiscountCalculator = () => {
                 </div>
             </div>
         </div>
-    );
+        
+        <DiscountCalculatorInfo/>
+        </>
 };
 
 export default DiscountCalculator;

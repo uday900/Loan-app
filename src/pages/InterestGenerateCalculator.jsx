@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './InterestGenerateCalculator.css';
+import RateOfInterestInfo from '../components/CalculatorsInfo/RateOfInterestCalInfo';
 
 const InterestGenerateCalculator = () => {
     const [principal, setPrincipal] = useState('');
@@ -238,6 +239,10 @@ const InterestGenerateCalculator = () => {
                     </div>
                 </div>
             )}
+        
+        
+        <RateOfInterestInfo/>
+        
         </div>
     );
 };

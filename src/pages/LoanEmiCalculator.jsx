@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import EMIResultTable from '../components/EMIResultTable';
+import LoanEMIInfo from '../components/CalculatorsInfo/LoanEMIInfo';
 
 function LoanEmiCalculator() {
     const [principal, setPrincipal] = useState('');
@@ -186,6 +187,8 @@ function LoanEmiCalculator() {
     </div>
     </div>
 </div>
+
+<LoanEMIInfo/>
 
     
     
